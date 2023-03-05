@@ -1,0 +1,105 @@
+******************************************Second largest********************************
+https://practice.geeksforgeeks.org/problems/second-largest3735/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+class Solution{
+public:	
+	// Function returns the second
+	// largest elements
+	int print2largest(int arr[], int n) {
+	    // code here
+	    int maxi=arr[0];
+       for(int i=0;i<n;i++){
+            if(arr[i] > maxi)
+                maxi = arr[i];
+        }
+        
+        
+        
+        int secondLargest = -1;
+        for(int i=0;i<n;i++){
+            if((arr[i]!=maxi) && (arr[i] > secondLargest) )
+            secondLargest = arr[i];
+        }
+        
+    return secondLargest;    
+
+    }
+	
+};
+T.C. O(2n)
+
+
+
+******************************************************Ninja And The Second Order Elements**********************************************************************
+https://www.codingninjas.com/codestudio/problems/ninja-and-the-second-order-elements_6581960?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems
+int sSmallest(int n, vector<int> a){
+int small=a[0];
+int sSmall=INT_MAX;
+for(int i=1;i<n;i++){
+    if(a[i] < small){
+        sSmall = small;
+        small=a[i];
+
+    }
+    else if(a[i] !=small && a[i]<sSmall)
+    sSmall = a[i];
+
+}
+return sSmall;
+}
+int sLargest(int n, vector<int> a){
+  int large=a[0];
+int sLarge=INT_MIN;
+for(int i=1;i<n;i++){
+    if(a[i] > large){
+        sLarge = large;
+        large=a[i];
+
+    }
+    else if(a[i]<large && a[i]> sLarge )
+    sLarge = a[i];
+}
+return sLarge;  
+
+}
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    // Write your code here.
+    int secondSmallest = sSmallest(n,a);
+    int secondLargest  = sLargest(n,a);
+    vector<int>v{secondLargest,secondSmallest};
+    return v;
+}
+
+
+
+
+
+
+
+
+********************************************************************** Ninja And The Sorted Check*************************************************************
+int isSorted(int n, vector<int> a) {
+    // Write your code here.
+    for(int i=1;i<n;i++){
+        if(a[i] >= a[i-1]){
+
+        }
+        else
+        return 0;
+    }
+    return 1;
+}
+
+
+
+************************************************************************Remove Duplicates from Sorted Array******************************************************
+int removeDuplicates(vector<int> &arr, int n) {
+	// Write your code here.
+	int i=0;
+	for(int j=1;j<n;j++){
+		if(arr[i]!=arr[j]){
+			arr[i+1]=arr[j];
+			i++;
+		}
+	}
+	return i+1;
+}
