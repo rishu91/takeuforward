@@ -1,0 +1,165 @@
+1) ***************************************************************** Left Rotate an Array by One***************************************************************
+#include <bits/stdc++.h> 
+vector<int> rotateArray(vector<int>& arr, int n) {
+    // Write your code here.
+    int i,temp=arr[0];
+    for ( i = 1; i < n; i++) {
+      arr[i-1] = arr[i];
+    }
+    arr[n-1]=temp;
+    return arr;
+}
+
+
+
+
+2) *********************************************************************************Rotate array*****************************************************************
+#include <bits/stdc++.h> 
+#include <iostream>
+using namespace std;
+void leftRotate(int arr[],int n,int d){
+    d=d%n;
+    int temp[d];
+    for(int i=0;i<d;i++){
+        temp[i]=arr[i];
+    }
+
+    for(int i=d;i<n;i++){
+        arr[i-d] = arr[i];
+    }
+
+    for(int i=n-d;i<n;i++){
+        arr[i]=temp[i-(n-d)];
+    }
+
+}
+int main() {
+int n;cin>>n;
+int arr[n];
+for(int i=0;i<n;i++)
+{
+    cin>>arr[i];
+}
+
+int d; cin>>d;
+leftRotate(arr,n,d);
+for(int i=0;i<n;i++){
+    cout<<arr[i]<<" ";
+}
+return 0;
+}
+
+3)Ninza and the zeroess
+vector<int> moveZeros(int n, vector<int> a) {
+    // Write your code here.
+    vector<int>temp(n);
+    int k=0;
+    for(int i=0;i<n;i++){
+        if(a[i]!=0)
+        temp[k++]=a[i];
+    }
+    while(k<n){
+        temp[k++]=0;
+    }
+    return temp;
+}
+
+
+
+
+4) ****************************************************************************Sorted array(union)***************************************************************
+
+vector < int > sortedArray(vector < int > a, vector < int > b) {
+    // Write your code here
+    int n1=a.size();
+    int n2=b.size();
+    int i=0,j=0;
+    vector<int>unionArray;
+    while(i<n1 && j<n2){
+        if(a[i] <= b[j]){
+          if (unionArray.size()==0 || unionArray.back() != a[i]) {
+            unionArray.push_back(a[i]);
+          }
+
+          i++;
+        }
+        else{
+          if (unionArray.size() == 0 || unionArray.back() != b[j]) {
+            unionArray.push_back(b[j]);
+          }
+          j++;
+        }
+    }
+
+        while(i<n1){
+             if (unionArray.size()==0 || unionArray.back() != a[i]) {
+            unionArray.push_back(a[i]);
+          }
+          i++;
+
+        }
+
+
+        while(j<n2){
+             if (unionArray.size()==0 || unionArray.back() != b[j]) {
+            unionArray.push_back(b[j]);
+          }
+          j++;
+        }
+
+    
+    return unionArray;
+}
+tc:O(n1+n2) we are iterating at every element at least once
+
+5) *****************************************************************8Intersecction of Two Arrays*****************************************************************
+A) *********************************brute force********************************************
+#include <bits/stdc++.h> 
+vector<int> findArrayIntersection(vector<int> &a, int n, vector<int> &b, int m)
+{
+	// Write your code here.
+	vector<int> ans;
+	int vis[m]={0};
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			if(a[i]==b[j] && vis[j] == 0){
+				ans.push_back(a[i]);
+				vis[j]=1;
+				break;
+			}
+			if(b[j]>a[i]) break;
+
+		}
+	}
+	return ans;
+}
+
+
+
+t.c. O(n1*n2)
+
+
+b) *****************optimal****************************************************
+#include <bits/stdc++.h> 
+vector<int> findArrayIntersection(vector<int> &a, int n, vector<int> &b, int m)
+{
+	// Write your code here.
+	int i=0,j=0;
+	vector<int> ans;
+	while(i<n && j<m){
+		if(a[i]<b[j]){
+			i++;
+		}
+		else if(b[j]<a[i]){
+			j++;
+		}
+		else
+		{
+			ans.push_back(a[i]);
+			i++; j++;
+		}
+	}
+	return ans;
+}
+
+t.c. O(n1+n2)
