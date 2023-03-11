@@ -1,0 +1,65 @@
+1. Missing Number
+better solution
+T.C. O(n)+O(n)
+S.C. O(n)
+int missingNumber(vector<int>&a, int N) {
+    int hash[N+1]={0};
+    for(auto ele:a){
+        hash[ele]++;
+    }
+
+    for(int i=1;i<=N;i++){
+        if(hash[i]==0)
+        return i;
+    }
+}
+
+
+optimal solution: a) summation
+b) XOR solution
+int missingNumber(vector<int>&a, int N) {
+    int xor1=0,xor2=0;
+    // for(int i=1;i<=N;i++){
+    //     xor1=xor1^i;
+    // }
+
+    for(int i=0;i<N-1;i++){
+        xor2=xor2^a[i];
+        xor1=xor1^(i+1);
+    }
+    xor1=xor1^N;
+    return xor1^xor2;
+}
+
+
+
+2. Maximum conseccutive ones
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int maxi=0,cnt=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==1){
+                cnt++;
+                 maxi=max(maxi,cnt);     }
+           
+            else 
+                cnt=0; 
+                  
+        }
+        return maxi;
+    }
+};
+
+
+3.Find The Single Element
+#include<vector>
+
+int getSingleElement(vector<int> &arr){
+	int xorr=0;
+	for(int i=0;i<arr.size();i++){
+		xorr=xorr^arr[i];
+	}	
+	return xorr;
+}
+
